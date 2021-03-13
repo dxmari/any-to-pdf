@@ -47,7 +47,7 @@ const findExt = (ext = 'html') => {
   return `.${SUPPORTED_EXTENTIONS.find(e => e === ext) || 'html'}`;
 }
 
-app.post('/to-pdf', async (req, res) => {
+app.post('/convert/to-pdf', async (req, res) => {
   const errorMsg = {};
 
   if (!req.query.name) {

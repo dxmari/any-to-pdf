@@ -65,6 +65,7 @@ app.post('/to-pdf', async (req, res) => {
   toPDF(file, findExt(req.query.type)).then((pdfBuffer) => {
     if (!req.query.download) {
       res.json({ pdf : pdfBuffer });
+      fs.unlinkSync(path.resolve(__dirname, 'file.pdf'));
     } else {
       res.download(path.resolve(__dirname, 'file' + '.pdf'));
     }

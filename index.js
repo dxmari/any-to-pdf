@@ -17,12 +17,14 @@ const toPDF = (file, ext) => {
   return new Promise(async (resolve, reject) => {
     try {
       const source = path.resolve(__dirname, `${file.name}${ext}`);
-      const destination = path.resolve(__dirname, `${file.name}.pdf`);
+      const destination = path.resolve(__dirname, `file.pdf`);
       fs.writeFileSync(source, file.content);
+      console.log('Create a Source File');
       await execCMD(`html-pdf ${source} ${destination}`);
+      console.log('PDF Generated');
       fs.unlinkSync(source);
-      console.log('save');
-      resolve();
+      console.log('Remove a Source File');
+      resolve(fs.readFileSync(destination));
     } catch (error) {
       reject(error)
     }
@@ -62,9 +64,9 @@ app.post('/to-pdf', async (req, res) => {
   }
   toPDF(file, findExt(req.query.type)).then((pdfBuffer) => {
     if (!req.query.download) {
-      res.sendFile(path.resolve(__dirname, file.name + '.pdf'));
+      res.json({ pdf : pdfBuffer });
     } else {
-      res.download(path.resolve(__dirname, file.name + '.pdf'));
+      res.download(path.resolve(__dirname, 'file' + '.pdf'));
     }
   }).catch(error => {
     console.log(error)

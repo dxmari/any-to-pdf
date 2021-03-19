@@ -16,7 +16,7 @@ const SUPPORTED_EXTENTIONS = ['txt', 'html'];
 const toPDF = (file, ext) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const source = path.resolve(__dirname, `${file.name}${ext}`);
+      const source = path.resolve(__dirname, `file.${ext}`);
       const destination = path.resolve(__dirname, `file.pdf`);
       fs.writeFileSync(source, file.content);
       console.log('Create a Source File');

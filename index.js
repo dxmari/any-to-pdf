@@ -3,13 +3,13 @@ const path = require('path');
 const fs = require('fs');
 const { exec } = require('child_process');
 const express = require('express');
-const { json, urlencoded, raw, text} = require('body-parser');
+const { json, urlencoded, raw, text } = require('body-parser');
 
 const app = express();
 
 app.use(json());
 app.use(urlencoded({ extended: false }));
-app.use(raw({type : 'text/html'}));
+app.use(raw({ type: 'text/html' }));
 
 const SUPPORTED_EXTENTIONS = ['txt', 'html'];
 
@@ -47,6 +47,10 @@ const findExt = (ext = 'html') => {
   return `.${SUPPORTED_EXTENTIONS.find(e => e === ext) || 'html'}`;
 }
 
+app.get('/', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'views/index.html'))
+});
+
 app.post('/convert/to-pdf', async (req, res) => {
   const errorMsg = {};
 
@@ -64,7 +68,7 @@ app.post('/convert/to-pdf', async (req, res) => {
   }
   toPDF(file, findExt(req.query.type)).then((pdfBuffer) => {
     if (!req.query.download) {
-      res.json({ pdf : pdfBuffer });
+      res.json({ pdf: pdfBuffer });
       fs.unlinkSync(path.resolve(__dirname, 'file.pdf'));
     } else {
       res.download(path.resolve(__dirname, 'file' + '.pdf'));
@@ -79,12 +83,12 @@ app.post('/convert/to-pdf', async (req, res) => {
 
 
 app.get('*', async (req, res) => {
-  res.sendFile(path.resolve(__dirname, req.path.replace('/', '')), (err) =>{
-    if(!err){
+  res.sendFile(path.resolve(__dirname, req.path.replace('/', '')), (err) => {
+    if (!err) {
       fs.unlinkSync(path.resolve(__dirname, req.path.replace('/', '')));
-    }else{
+    } else {
       res.status(400).json({
-        messsage : 'No file found'
+        messsage: 'No file found'
       });
     }
   });

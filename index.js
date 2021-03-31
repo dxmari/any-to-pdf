@@ -81,11 +81,20 @@ app.post('/convert/to-pdf', async (req, res) => {
   })
 })
 
+app.get('/views/*', async (req, res) => {
+  res.sendFile(path.resolve(__dirname, req.path.replace('/', '')), (err) => {
+    if (err) {
+      res.status(400).json({
+        messsage: 'No file found'
+      });
+    }
+  });
+})
 
 app.get('*', async (req, res) => {
   res.sendFile(path.resolve(__dirname, req.path.replace('/', '')), (err) => {
     if (!err) {
-      fs.unlinkSync(path.resolve(__dirname, req.path.replace('/', '')));
+      // fs.unlinkSync(path.resolve(__dirname, req.path.replace('/', '')));
     } else {
       res.status(400).json({
         messsage: 'No file found'

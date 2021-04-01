@@ -9,7 +9,7 @@ $(function () {
   $('.file-name h2').text('file_' + fileName);
   $('.file-size').text(size);
   $('#pdf-viewer').height(window.innerHeight - 120);
-  $('#pdf-viewer').attr('src', `http://localhost:9030/outputs/${fileName}.pdf#toolbar=0`);
+  $('#pdf-viewer').attr('src', `/outputs/${fileName}.pdf#toolbar=0`);
   NProgress.done(true);
 })
 

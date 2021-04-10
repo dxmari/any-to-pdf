@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Any To PDF | PDF Conv</title>
+  <meta name="google-signin-client_id" content="805019776689-197scsvid0g8sqk84lt34f5h85esffcj.apps.googleusercontent.com">
+
+  <link rel="shortcut icon" href="./../views/assets/images/logo.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css"
+    integrity="sha512-42kB9yDlYiCEfx2xVwq0q7hT4uf26FUgSIZBK8uiaEnTdShXjwr8Ip1V4xGJMg3mHkUt9nNuTDxunHF0/EgxLQ=="
+    crossorigin="anonymous" />
+  <link rel="stylesheet" href="./../views/assets/styles/slide-out-panel.min.css">
+  <link rel="stylesheet" type="text/css" href="./../views/assets/styles/nice-select.css">
+  <link rel="stylesheet" href="./../views/assets/styles/style.css">
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"
+    integrity="sha512-bUg5gaqBVaXIJNuebamJ6uex//mjxPk8kljQTdM1SwkNrQD7pjS+PerntUSD+QRWPNJ0tq54/x4zRV8bLrLhZg=="
+    crossorigin="anonymous"></script>
+  <script src="./../views/assets/js/slide-out-panel.min.js"></script>
+  <script src="./../views/assets/js/nice-select.min.js"></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script src="./../views/assets/js/facebook.js"></script>
+  <script src="./../views/scripts/index.js"></script>
+</head>
+
+<body class="body-container">
+  <nav class="fixed">
+    <ul>
+      <li class="nav-left-sec">
+        <div class="logo-sec">
+          <div class="logo-block">
+            <img src="./../views/assets/images/logo.svg" alt="">
+            <span>PDF Conv</span>
+          </div>
+        </div>
+      </li>
+      <li class="nav-actions-sec">
+        <% if(user) { %>
+          <div class="nav-actions nav-item">
+            <div data-bs-toggle="dropdown" class="user-details nav-link  dropdown-toggle">
+              <% if(user.profile_pic) { %>
+                <img src="<%= user.profile_pic %>" alt="">
+              <% } else { %> 
+                <div class="img-tag">MS</div>
+              <% } %> 
+            </div>
+            <ul class="dropdown-menu">
+              <li><%= user.full_name %></li>
+              <li><%= user.email %></li>
+              <li><div class="apikey">
+                <div class="api_key_cpy"><%= "**************" %></div>
+                <span onclick="copyResetCode('<%= user._id %>', '<%= user.api_key %>', event)">
+                  <img src="./../views/assets/images/copy.svg"> Copy API key
+                </span>
+              </div>
+            </li>
+            <li class="logout-btn">
+              <a onclick="logout('<%= user.last_enrolled_type %>')">Logout</a>
+            </li>
+            </ul>
+          </div>
+        <% } else { %> 
+          <div class="nav-actions">
+            <button onclick="login()" class="btn btn-primary btn-clear login-btn">Login</button>
+            <button onclick="register()" class="btn btn-primary">Signup For Free</button>
+          </div>
+        <% } %> 
+      </li>
+    </ul>
+  </nav>
+  <section class="top-section">
+    <div class="page-title">
+      <div class="converter-logo">
+        <img src="./../views/assets/images/file.svg" alt="">
+      </div>
+      <div class="converter-text">
+        Convert your files into PDF for <b>FREE</b>
+        <p>Supported formats are images, text, HTML</p>
+      </div>
+    </div>
+    <div class="page-dropper-sec">
+      <div class="file-dropper">
+        <div class="progress-bars progress-infinite">
+          <div class="progress-bar3">
+          </div>
+        </div>
+        <div class="top-loader-bar"></div>
+        <div class="file-dropper-bg"></div>
+        <input title="" type="file" id="dropper">
+        <div class="file-dropper-block">
+          <div class="pdf-img"><img src="./../views/assets/images/pdf-file-format.svg" alt=""></div>
+          <button class="btn btn-primary chooser-btn"><img src="./../views/assets/images/add-file.png" alt="">CHOOSE
+            FILE</button>
+          <div class="dropper-text">or drop your file</div>
+        </div>
+        <div class="file-uploading">
+          Uploading...
+        </div>
+        <div class="file-converting">
+          <div class="convert-img">
+            <img class="files-img" src="./../views/assets/images/files.svg" alt="">
+            <img class="files-arrow" src="./../views/assets/images/right-arrow.svg" alt="">
+            <img class="files-pdf" src="./../views/assets/images/pdf.svg" alt="">
+          </div>
+          <div class="convert-text">
+            Converting...
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="explain-section">
+    <h2 class="section-title">Key Features of PDF Conv</h2>
+    <h5 class="section-desc">Convert your files into pdf with high quality. We provide you for free of cost. <br> You
+      can convert unlimited files.</h5>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="explain-img">
+          <img src="./../views/assets/images/convert-img.svg" alt="">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <ul>
+          <li>
+            <div class="ex-title">Security <img src="./../views/assets/images/verified.svg" alt=""> </div>
+            <div class="ex-desc">Everyone think about their file security. So Your security is our first priority. We
+              can transfers your files with an advanced
+              level of SSL encryption. We destroy all files automatically from our servers immediately.</div>
+          </li>
+          <li>
+            <div class="ex-title">Quality <img src="./../views/assets/images/original.svg" alt=""></div>
+            <div class="ex-desc">Out PDF Conv give the best quality of converted PDF files, you can't get better quality
+              pdf conversion files than us for FREE.</div>
+          </li>
+          <li>
+            <div class="ex-title">Use at place <img src="./../views/assets/images/cloud-computing.svg" alt=""></div>
+            <div class="ex-desc">You can use the our PDF file converter from anywhere for free with use of internet.
+            </div>
+          </li>
+          <li>
+            <div class="ex-title">Unlimited access <img src="./../views/assets/images/cloud-computing.svg" alt=""></div>
+            <div class="ex-desc">You can convert unlimited files into pdf for free of cost. Don't worry we can't keep
+              your files in our servers.</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="integration-section">
+    <h2 class="section-title">API Integrations</h2>
+    <h5 class="section-desc">You can use our service as endpoint api's with the free of cost. We can support <br> all the programming languages like JQuery, Angular, React, NodeJS, Python, Ruby on rails, php etc..,</h5>
+    <div class="row">
+      <div class="tab-header-sec">
+        <ul class="tabs tabs-basic">
+          <li class="active"><a tab-id="1">cURL</a></li>
+          <li><a tab-id="2">JQuery</a></li>
+          <li><a tab-id="3">NodeJS</a></li>
+          <li><a tab-id="4">Java</a></li>
+          <li><a tab-id="5">PHP</a></li>
+          <li><a tab-id="6">Ruby</a></li>
+          <li><a tab-id="7">Python</a></li>
+          <span class="indicator"></span>
+        </ul>
+      </div>
+      <div class="tabs-body">
+        <div tab-key="1" class="tabs-item">
+          <pre>
+            curl --location --request POST 'https://dxmari.tk/api/convert/to-pdf' \
+            --header 'Content-Type: multipart/form-data' \
+            --header 'Authorization: Bearer YOUR_API_KEY' \
+            --form '__file_from=@"/path/to/file"'
+          </pre>
+        </div>
+        <div tab-key="2" class="tabs-item">
+          <pre>
+            var form = new FormData();
+            form.append("__file_from", fileInput.files[0], "file");
+  
+            var settings = {
+              "url": "https://dxmari.tk/api/convert/to-pdf",
+              "method": "POST",
+              "timeout": 0,
+              "headers": {
+                "Content-Type": "multipart/form-data",
+                "Authorization": "Bearer YOUR_API_KEY"
+              },
+              "processData": false,
+              "mimeType": "multipart/form-data",
+              "contentType": false,
+              "data": form
+            };
+  
+            $.ajax(settings).done(function (response) {
+              console.log(response);
+            });
+          </pre>
+        </div>
+        <div tab-key="3" class="tabs-item">
+          <pre>
+            var axios = require('axios');
+            var FormData = require('form-data');
+            var fs = require('fs');
+            var data = new FormData();
+            data.append('__file_from', fs.createReadStream('/path/to/file'));
+  
+            var config = {
+              method: 'post',
+              url: 'https://dxmari.tk/api/convert/to-pdf',
+              headers: { 
+                'Content-Type': 'multipart/form-data', 
+                'Authorization': 'Bearer YOUR_API_KEY', 
+                ...data.getHeaders()
+              },
+              data : data
+            };
+  
+            axios(config)
+            .then(function (response) {
+              console.log(JSON.stringify(response.data));
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+          </pre>
+
+        </div>
+        <div tab-key="4" class="tabs-item">
+          <pre>
+            Unirest.setTimeouts(0, 0);
+            HttpResponse<String> response = Unirest.post("https://dxmari.tk/api/convert/to-pdf")
+              .header("Content-Type", "multipart/form-data")
+              .header("Authorization", "Bearer YOUR_API_KEY")
+              .field("file", new File("/path/to/file"))
+              .asString();
+          </pre>
+        </div>
+        <div tab-key="5" class="tabs-item">
+          <pre>
+            <?php
+            require_once 'HTTP/Request2.php';
+            $request = new HTTP_Request2();
+            $request->setUrl('https://dxmari.tk/api/convert/to-pdf');
+            $request->setMethod(HTTP_Request2::METHOD_POST);
+            $request->setConfig(array(
+              'follow_redirects' => TRUE
+            ));
+            $request->setHeader(array(
+              'Content-Type' => 'multipart/form-data',
+              'Authorization' => 'Bearer YOUR_API_KEY'
+            ));
+            $request->addUpload('__file_from', '/path/to/file', 'file', '<Content-Type Header>');
+            try {
+              $response = $request->send();
+              if ($response->getStatus() == 200) {
+                echo $response->getBody();
+              }
+              else {
+                echo 'Unexpected HTTP status: ' . $response->getStatus() . ' ' .
+                $response->getReasonPhrase();
+              }
+            }
+            catch(HTTP_Request2_Exception $e) {
+              echo 'Error: ' . $e->getMessage();
+            }
+          </pre>
+        </div>
+        <div tab-key="6" class="tabs-item">
+          <pre>
+            require "uri"
+            require "net/http"
+
+            url = URI("https://dxmari.tk/api/convert/to-pdf")
+
+            https = Net::HTTP.new(url.host, url.port)
+            https.use_ssl = true
+
+            request = Net::HTTP::Post.new(url)
+            request["Content-Type"] = "multipart/form-data"
+            request["Authorization"] = "Bearer YOUR_API_KEY"
+            form_data = [['__file_from', File.open('/path/to/file')]]
+            request.set_form form_data, 'multipart/form-data'
+            response = https.request(request)
+            puts response.read_body
+          </pre>
+        </div>
+        <div tab-key="7" class="tabs-item">
+          <pre>
+            import requests
+
+            url = "https://dxmari.tk/api/convert/to-pdf"
+
+            payload={}
+            files=[
+              ('__file_from',('file',open('/path/to/file','rb'),'application/octet-stream'))
+            ]
+            headers = {
+              'Content-Type': 'multipart/form-data',
+              'Authorization': 'Bearer YOUR_API_KEY'
+            }
+
+            response = requests.request("POST", url, headers=headers, data=payload, files=files)
+
+            print(response.text)
+
+          </pre>
+        </div>
+      </div>
+      <div class="notes-section">
+        <h2 class="section-title">How to get API KEY</h2>
+        <ul>
+          <li><span>1)</span> Login or Signup</li>
+          <li><span>2)</span> Click or hover the avatar icon (which is placed on right top corner)</li>
+          <li><span>3)</span> Click the Copy API Key</li>
+          <li><span>4)</span> If you want to reset the API Key & then click the Reset button. </li>
+        </ul>
+        <div class="notes">
+          <p>Note: Please keep your api key safely.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="footer-left-sec">
+          © 2021 PDF Conv — Made <span>❤</span> with for you.
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="footer-right-sec">
+          <!-- <a>Privacy Policy & Terms</a> -->
+          <a href="mailto:dxmari007@gmail.com?subject=Drop your message - Regards">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <%- include('partials/auth') %>
+</body>
+
+</html>

@@ -3,7 +3,8 @@
 
 <head>
   <title>Any To PDF | PDF Conv</title>
-  <meta name="google-signin-client_id" content="805019776689-197scsvid0g8sqk84lt34f5h85esffcj.apps.googleusercontent.com">
+  <meta name="google-signin-client_id"
+    content="805019776689-197scsvid0g8sqk84lt34f5h85esffcj.apps.googleusercontent.com">
 
   <link rel="shortcut icon" href="./../views/assets/images/logo.png" type="image/x-icon">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -23,6 +24,18 @@
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   <script src="./../views/assets/js/facebook.js"></script>
   <script src="./../views/scripts/index.js"></script>
+  <!-- Global site tag (gtag.js) - Google Adsense -->
+  <script data-ad-client="ca-pub-4431810965267153" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PFEQV8GFG7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-PFEQV8GFG7');
+  </script>
 </head>
 
 <body class="body-container">
@@ -42,31 +55,38 @@
             <div data-bs-toggle="dropdown" class="user-details nav-link  dropdown-toggle">
               <% if(user.profile_pic) { %>
                 <img src="<%= user.profile_pic %>" alt="">
-              <% } else { %> 
-                <div class="img-tag">MS</div>
-              <% } %> 
+                <% } else { %>
+                  <div class="img-tag">MS</div>
+                  <% } %>
             </div>
             <ul class="dropdown-menu">
-              <li><%= user.full_name %></li>
-              <li><%= user.email %></li>
-              <li><div class="apikey">
-                <div class="api_key_cpy"><%= "**************" %></div>
-                <span onclick="copyResetCode('<%= user._id %>', '<%= user.api_key %>', event)">
-                  <img src="./../views/assets/images/copy.svg"> Copy API key
-                </span>
-              </div>
-            </li>
-            <li class="logout-btn">
-              <a onclick="logout('<%= user.last_enrolled_type %>')">Logout</a>
-            </li>
+              <li>
+                <%= user.full_name %>
+              </li>
+              <li>
+                <%= user.email %>
+              </li>
+              <li>
+                <div class="apikey">
+                  <div class="api_key_cpy">
+                    <%= "**************" %>
+                  </div>
+                  <span onclick="copyResetCode('<%= user._id %>', '<%= user.api_key %>', event)">
+                    <img src="./../views/assets/images/copy.svg"> Copy API key
+                  </span>
+                </div>
+              </li>
+              <li class="logout-btn">
+                <a onclick="logout('<%= user.last_enrolled_type %>')">Logout</a>
+              </li>
             </ul>
           </div>
-        <% } else { %> 
-          <div class="nav-actions">
-            <button onclick="login()" class="btn btn-primary btn-clear login-btn">Login</button>
-            <button onclick="register()" class="btn btn-primary">Signup For Free</button>
-          </div>
-        <% } %> 
+          <% } else { %>
+            <div class="nav-actions">
+              <button onclick="login()" class="btn btn-primary btn-clear login-btn">Login</button>
+              <button onclick="register()" class="btn btn-primary">Signup For Free</button>
+            </div>
+            <% } %>
       </li>
     </ul>
   </nav>
@@ -113,7 +133,8 @@
   </section>
   <section class="explain-section">
     <h2 class="section-title">Key Features of PDF Conv</h2>
-    <h5 class="section-desc">Convert your files into pdf with high quality, all for free! <br> You can convert unlimited files.</h5>
+    <h5 class="section-desc">Convert your files into pdf with high quality, all for free! <br> You can convert unlimited
+      files.</h5>
     <div class="row">
       <div class="col-md-6">
         <div class="explain-img">
@@ -124,19 +145,24 @@
         <ul>
           <li>
             <div class="ex-title">Security <img src="./../views/assets/images/verified.svg" alt=""> </div>
-            <div class="ex-desc">We know you will be worried about your file security. We take security very seriously! Your files are transmitted with an advanced level of SSL encryption. All files are automatically deleted from our servers immediately after conversion.</div>
+            <div class="ex-desc">We know you will be worried about your file security. We take security very seriously!
+              Your files are transmitted with an advanced level of SSL encryption. All files are automatically deleted
+              from our servers immediately after conversion.</div>
           </li>
           <li>
             <div class="ex-title">Quality <img src="./../views/assets/images/original.svg" alt=""></div>
-            <div class="ex-desc">We give you the highest quality of PDF files. You can't get better quality anywhere for FREE!</div>
+            <div class="ex-desc">We give you the highest quality of PDF files. You can't get better quality anywhere for
+              FREE!</div>
           </li>
           <li>
             <div class="ex-title">Use anywhere <img src="./../views/assets/images/cloud-computing.svg" alt=""></div>
-            <div class="ex-desc">You can use our service from anywhere for free. You just need a working internet access!</div>
+            <div class="ex-desc">You can use our service from anywhere for free. You just need a working internet
+              access!</div>
           </li>
           <li>
             <div class="ex-title">Unlimited access <img src="./../views/assets/images/cloud-computing.svg" alt=""></div>
-            <div class="ex-desc">You can convert unlimited files into pdf for free. Worry not, we don't retain your files in our servers.</div>
+            <div class="ex-desc">You can convert unlimited files into pdf for free. Worry not, we don't retain your
+              files in our servers.</div>
           </li>
         </ul>
       </div>
@@ -144,7 +170,8 @@
   </section>
   <section class="integration-section">
     <h2 class="section-title">API Integrations</h2>
-    <h5 class="section-desc">You can use our service as endpoint api's with the free of cost. We can support <br> all the programming languages like JQuery, Angular, React, NodeJS, Python, Ruby on rails, php etc..,</h5>
+    <h5 class="section-desc">You can use our service as endpoint api's with the free of cost. We can support <br> all
+      the programming languages like JQuery, Angular, React, NodeJS, Python, Ruby on rails, php etc..,</h5>
     <div class="row">
       <div class="tab-header-sec">
         <ul class="tabs tabs-basic">

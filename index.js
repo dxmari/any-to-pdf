@@ -154,6 +154,10 @@ app.get('/pdf-preview/:id', (req, res) => {
   }
 });
 
+app.get('/privacy-policy', (req, res) =>{
+  res.render(path.resolve(__dirname, 'views/privacy'));
+})
+
 
 
 // End Points

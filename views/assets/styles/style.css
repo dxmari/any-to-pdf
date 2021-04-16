@@ -697,3 +697,14 @@ pre{
   min-width: 20px;
   display: inline-block;
 }
+
+.content-section{
+  padding: 90px 0;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.privacy.body-container nav ul li .logo-sec .logo-block{
+  max-width: 180px;
+  cursor: pointer;
+}

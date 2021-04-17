@@ -188,7 +188,7 @@
       <div class="tabs-body">
         <div tab-key="1" class="tabs-item">
           <pre>
-            curl --location --request POST 'https://dxmari.com/api/convert/to-pdf' \
+            curl --location --request POST 'https://anytopdf.dxmari.com/api/convert/to-pdf' \
             --header 'Content-Type: multipart/form-data' \
             --header 'Authorization: Bearer YOUR_API_KEY' \
             --form '__file_from=@"/path/to/file"'
@@ -200,7 +200,7 @@
             form.append("__file_from", fileInput.files[0], "file");
   
             var settings = {
-              "url": "https://dxmari.com/api/convert/to-pdf",
+              "url": "https://anytopdf.dxmari.com/api/convert/to-pdf",
               "method": "POST",
               "timeout": 0,
               "headers": {
@@ -228,7 +228,7 @@
   
             var config = {
               method: 'post',
-              url: 'https://dxmari.com/api/convert/to-pdf',
+              url: 'https://anytopdf.dxmari.com/api/convert/to-pdf',
               headers: { 
                 'Content-Type': 'multipart/form-data', 
                 'Authorization': 'Bearer YOUR_API_KEY', 
@@ -250,7 +250,7 @@
         <div tab-key="4" class="tabs-item">
           <pre>
             Unirest.setTimeouts(0, 0);
-            HttpResponse<String> response = Unirest.post("https://dxmari.com/api/convert/to-pdf")
+            HttpResponse<String> response = Unirest.post("https://anytopdf.dxmari.com/api/convert/to-pdf")
               .header("Content-Type", "multipart/form-data")
               .header("Authorization", "Bearer YOUR_API_KEY")
               .field("file", new File("/path/to/file"))
@@ -262,7 +262,7 @@
             <?php
             require_once 'HTTP/Request2.php';
             $request = new HTTP_Request2();
-            $request->setUrl('https://dxmari.com/api/convert/to-pdf');
+            $request->setUrl('https://anytopdf.dxmari.com/api/convert/to-pdf');
             $request->setMethod(HTTP_Request2::METHOD_POST);
             $request->setConfig(array(
               'follow_redirects' => TRUE
@@ -292,7 +292,7 @@
             require "uri"
             require "net/http"
 
-            url = URI("https://dxmari.com/api/convert/to-pdf")
+            url = URI("https://anytopdf.dxmari.com/api/convert/to-pdf")
 
             https = Net::HTTP.new(url.host, url.port)
             https.use_ssl = true
@@ -310,7 +310,7 @@
           <pre>
             import requests
 
-            url = "https://dxmari.com/api/convert/to-pdf"
+            url = "https://anytopdf.dxmari.com/api/convert/to-pdf"
 
             payload={}
             files=[
